@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goat Management</title>
+    <link rel="stylesheet" href="Goat Management System.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Goat Management System</h1>
+        <a href="./Add Goat.html">Add Goat</a>
+        <a href="./Edit Goat.html">Edit Goat</a>
+        <div id="goat-list"></div>
+    </div>
+    <script>
+        // Fetch all goats and display them
+        async function fetchGoats() {
+            const response = await fetch('/goats');
+            const goats = await response.json();
+            const goatList = document.getElementById('goat-list');
+            goatList.innerHTML = '';
+            goats.forEach(goat => {
+                const goatItem = document.createElement('div');
+                goatItem.classList.add('goat-item');
+                goatItem.innerHTML = `
+                    <h3>${goat.name}</h3>
+                    <p>Age: ${goat.age}</p>
+                    <p>Vaccination Time: ${goat.vaccination_time}</p>
+                    <p>Vaccination Type: ${goat.vaccination_type}</p>
+                    <button onclick="editGoat(${goat.id})">Edit</button>
+                    <button onclick="deleteGoat(${goat.id})">Delete</button>
+                `;
+                goatList.appendChild(goatItem);
+            });
+        }
+
+        // Delete a goat record
+        async function deleteGoat(id) {
+            await fetch(/goats/${id}, { method: 'DELETE' });
+            fetchGoats();
+        }
+
+        // Navigate to the edit page with the goat ID
+        function editGoat(id) {
+            window.location.href = edit-goat.html?id=${id};
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchGoats);
+    </script>
+</body>
+</html>

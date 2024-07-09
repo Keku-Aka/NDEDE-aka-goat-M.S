@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Goat</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <form class="auth-form" action="/goats" method="POST">
+            <hr>
+            <h2>Add Goat</h2>
+            <label for="name">Goat ID</label>
+            <input type="text" id="name" name="name" required>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required>
+            <label for="vaccination_time">Vaccination Time</label>
+            <input type="date" id="vaccination_time" name="vaccination_time" required>
+            <label for="vaccination_type">Vaccination Type</label>
+            <input type="text" id="vaccination_type" name="vaccination_type" required>
+            <button type="submit">Add Goat</button> 
+            <a href="./Edit Goat.html">Edit Goat</a> 
+            <a href="./Goat Management System.html">Goat Management System</a>
+        </form>
+    </div>
+</body>
+
+</html>

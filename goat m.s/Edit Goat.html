@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Goat</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        async function fetchGoat(id) {
+            const response = await fetch(/goats/${ id });
+            const goat = await response.json();
+            document.getElementById('name').value = goat.name;
+            document.getElementById('age').value = goat.age;
+            document.getElementById('vaccination_time').value = goat.vaccination_time.split('T')[0];
+            document.getElementById('vaccination_type').value = goat.vaccination_type;
+        }
+
+        function getGoatIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        window.onload = () => {
+            const id = getGoatIdFromUrl();
+            fetchGoat(id);
+            document.getElementById('edit-form').action = /goats/${ id };
+        };
+    </script>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <form class="auth-form" id="edit-form" method="POST">
+            <h2>Edit Goat</h2><hr>
+            <label for="name">Goat ID</label>
+            <input type="text" id="name" name="name" required>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required>
+            <label for="vaccination_time">Vaccination Time</label>
+            <input type="date" id="vaccination_time" name="vaccination_time" required>
+            <label for="vaccination_type">Vaccination Type</label>
+            <input type="text" id="vaccination_type" name="vaccination_type" required>
+            <button type="submit">Edit Goat</button>
+            <a href="./Add Goat.html">Add Goat</a> 
+            <a href="./Goat Management System.html">Goat Management System</a>
+        </form>
+    </div>
+</body>
+
+</html>
